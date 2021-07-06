@@ -19,13 +19,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/formulario', function () {
-    return view('formulario')->name('formulario');
-});
-
-Route::get('/pp', function () {
-    return view('form_fornecedor');
-});
-Route::get('/home', function () {
-    return view('teste');
-});
