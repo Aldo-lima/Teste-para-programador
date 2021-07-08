@@ -8,9 +8,18 @@ use App\Models\Endereco;
 use App\Models\Contato_principal;
 use App\Models\Contato_adicional;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Resources;
+
 
 class FornecedorController extends Controller
 {
+
+    public function __construct(Request $request, Fornecedor $fornecedor)
+    {
+        $this->request = $request;
+        $this->repository = $fornecedor;
+    }
+
 
 
     /**
@@ -104,12 +113,20 @@ class FornecedorController extends Controller
         //
     }
 
+    /**
+     * filtrar
+     */
+    public function filtrar(Request $request )
+    {
+        $filters = $request->all();
 
+        $fornecedores= $this->repository->filtrar($request->filter);
 
+        return view('lista_fornecedor', [
+            'fornecedores'=> $fornecedores,
+            'filters'=> $filters,
 
-
-
-
-
+        ]);
+    }
 
 }

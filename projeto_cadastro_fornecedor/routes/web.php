@@ -14,7 +14,7 @@ use App\Http\Controllers\FornecedorController;
 */
 //Route::get('/fornecedor')
 
-
+Route::any('fornecedor/filtrar',[FornecedorController::class, 'filtrar'])->name('filtrar');
 Route::get( '/fornecedor', [FornecedorController::class, 'index'])->name('fornecedor.index');
 Route::get( '/fornecedor/create', [FornecedorController::class, 'create'])->name('fornecedor.create');
 Route::get( '/fornecedor/create/fisica', [FornecedorController::class, 'createPessoaFisica'])->name('fornecedorFisica.create');
@@ -26,6 +26,3 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('teste', function () {
-    return view('form_fornecedor_juridico');
-});

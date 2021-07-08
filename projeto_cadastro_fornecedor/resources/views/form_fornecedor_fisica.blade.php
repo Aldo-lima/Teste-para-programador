@@ -14,7 +14,7 @@
       <div id="form-pessoa" style="background-color: #ffff; padding:10px; margin:20px;" id="form_pess_fisica">
           <div classe="row" id="form-pessoa">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="tipo" id="inlineRadio1" value="option1" required>
+                <input class="form-check-input" type="radio"  onclick="location.href='{{route('fornecedor.create')}}'" name="tipo" id="inlineRadio1" value="option1" required>
                 <label class="form-check-label" for="inlineRadio1">Pessoa Juridica</label>
               </div>
 

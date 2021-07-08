@@ -32,4 +32,16 @@ class Fornecedor extends Model
    public function contatosAdicional(){
        return $this->hasMany(Contato_adicional::class);
    }
+
+   public function filtrar($filter = null)
+   {
+       $results = $this->where(function ($query) use($filter){
+           if ($filter){
+               $query->where('nome_fantasia', 'LIKE', "%{$filter}%");
+           }
+
+       })//->toSql();
+       ->paginate();
+     return $results;
+   }
 }
