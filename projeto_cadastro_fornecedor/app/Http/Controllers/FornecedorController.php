@@ -87,8 +87,19 @@ class FornecedorController extends Controller
      */
     public function edit($id)
     {
-        //
+
+
+       $fornecedor = Fornecedor::with(['endereco', 'contatoPrincipal','contatosAdicional'])->find($id);
+
+       $endereco = Endereco::all();
+       $contato_pricipal = Contato_principal::all();
+       $contato_adicional = Contato_adicional::all();
+       $action = route('fornecedor.update', $fornecedor->id);
+       return view('formulario_update', ['action', 'fornecedor'=>$fornecedor,'contato_pricipal'=>$contato_pricipal, 'contato_adicional'=>$contato_adicional, 'endereco'=>$endereco]);
+        
+        
     }
+
 
       /**
      * Update the specified resource in storage.
@@ -109,8 +120,10 @@ class FornecedorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+            
+        Fornecedor::destroy($id);
+        return redirect()->route('fornecedor.index');_  
     }
 
     /**
