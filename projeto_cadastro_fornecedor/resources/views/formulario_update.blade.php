@@ -1,3 +1,6 @@
+
+===============================================certo
+
 @extends('base')
 @section('conteudo-principal')
 <style>
@@ -9,7 +12,7 @@
 
 <h1>Editar</h1>
  <div id="formulario" >
-    <form action="{{route('fornecedor.store')}}" method="PUT" >
+    <form action="{{$action}}" method="PUT" >
       @csrf
       <div id="form-pessoa" style="background-color: #ffff; padding:10px; margin:20px;" id="form_pess_fisica">
           <div classe="row" id="form-pessoa">
@@ -79,7 +82,7 @@
                   <div class="row">
                         <div id="teste" class="col-3">
                               <label for="inputEmail4" class="form-label">Telefone</label>
-                                <input type="text" name="telefone" value="{{old('telefone',$fonecedor->contatoPrincipal->telefone ?? '' )}}"  class="form-control" id="telefone" data-js="telefone"> required>
+                                <input type="text" name="telefone" value="{{old('telefone',$fornecedor->contatoPrincipal->telefone ?? '' )}}"  class="form-control" id="telefone" data-js="telefone"> required>
                                 <a href="#" id="add-campo" class="tel">Adicionar</a>
                         </div>
 
@@ -172,32 +175,32 @@
                         <div class="row">
                             <div class="col-4">
                                 <label for="exampleInputPassword1" class="form-label">CEP</label>
-                                <input type="text" name="cep" value="{{old('cep',$fonecedor->endereco->cep ?? '' )}}" value=""onblur="pesquisacep(this.value);" class="form-control" id="cep" data-js="cep"> required>
+                                <input type="text" name="cep" value="{{old('cep',$fornecedor->endereco->cep ?? '' )}}" value=""onblur="pesquisacep(this.value);" class="form-control" id="cep" data-js="cep"> required>
                             </div>
                             <div class="col-4">
                                 <label for="exampleInputPassword1" class="form-label">Logradouro</label>
-                                <input type="text" name="logradouro" value="{{old('logradouro',$fonecedor->endereco->logradouro ?? '' )}}" class="form-control" id="rua" required>
+                                <input type="text" name="logradouro" value="{{old('logradouro',$fornecedor->endereco->logradouro ?? '' )}}" class="form-control" id="rua" required>
                             </div>
                             <div class="col-3">
                                 <label for="exampleInputPassword1" class="form-label">Numero</label>
-                                <input type="number" name="numero" value="{{old('numero',$fonecedor->endereco->numero ?? '' )}}" class="form-control" id="exampleInputPassword1" required>
+                                <input type="number" name="numero" value="{{old('numero',$fornecedor->endereco->numero ?? '' )}}" class="form-control" id="exampleInputPassword1" required>
                             </div>
                             <div class="col-4">
                                 <label for="exampleInputPassword1" class="form-label">Complemento</label>
-                                <input type="text" name=complemento  value="{{old('complemento',$fonecedor->endereco->complemento ?? '' )}}" class="form-control" id="" required>
+                                <input type="text" name=complemento  value="{{old('complemento',$fornecedor->endereco->complemento ?? '' )}}" class="form-control" id="" required>
                             </div>
                             <div class="col-4">
                                 <label for="exampleInputPassword1" class="form-label">Bairro</label>
-                                <input type="text" name="bairro" value="{{old('bairro',$fonecedor->endereco->bairro ?? '' )}}" class="form-control" id="bairro" required>
+                                <input type="text" name="bairro" value="{{old('bairro',$fornecedor->endereco->bairro ?? '' )}}" class="form-control" id="bairro" required>
                             </div>
                             <div class="col-4">
                                 <label for="exampleInputPassword1" class="form-label">Ponto de Referencia</label>
-                                <input type="text" name="ponto_referencia" value="{{old('ponto_referencia',$fonecedor->endereco->ponto_referencia ?? '' )}}" class="form-control" id="exampleInputPassword1">
+                                <input type="text" name="ponto_referencia" value="{{old('ponto_referencia',$fornecedor->endereco->ponto_referencia ?? '' )}}" class="form-control" id="exampleInputPassword1">
                             </div>
 
                             <div  class="col-4" >
                                 <label for="disabledSelect" class="form-label" >UF</label>
-                                <select  name="uf" id="uf" value="{{old('uf',$fonecedor->endereco->uf ?? '' )}}"class="form-select" required>
+                                <select  name="uf" id="uf" value="{{old('uf',$fornecedor->endereco->uf ?? '' )}}"class="form-select" required>
                                     <option value="SP">Selecione istado</option>
                                     <option value="RJ">Selecione istado</option>
                                     <option value="PR">Selecione istado</option>
@@ -363,4 +366,7 @@ function limpa_formulário_cep() {
 
 
 </script>
+
+
+
 

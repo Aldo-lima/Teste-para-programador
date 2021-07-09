@@ -30,6 +30,7 @@
                 <td>{{$fornecedor->apelido}}</td>
                 <td>{{$fornecedor->cnpj_cpf}}</td>
                 <td>{{$fornecedor->ativo}}</td>
+               
                 <td>
                     <form action="{{route('fornecedor.edit', $fornecedor->id)}}"  method="post">
                         @csrf

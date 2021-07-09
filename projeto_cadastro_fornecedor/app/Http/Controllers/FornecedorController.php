@@ -64,6 +64,7 @@ class FornecedorController extends Controller
        $fornecedor->contatoPrincipal()->create($request->all());
        $fornecedor->contatosAdicional()->create($request->all());
        DB::Commit();
+
        return redirect()->route('fornecedor.index');
 
     }
@@ -88,16 +89,15 @@ class FornecedorController extends Controller
     public function edit($id)
     {
 
-
        $fornecedor = Fornecedor::with(['endereco', 'contatoPrincipal','contatosAdicional'])->find($id);
+       
 
        $endereco = Endereco::all();
-       $contato_pricipal = Contato_principal::all();
-       $contato_adicional = Contato_adicional::all();
+       $contatoPrincipal = Contato_principal::all();
+       $contatosAdicional = Contato_adicional::all();
        $action = route('fornecedor.update', $fornecedor->id);
-       return view('formulario_update', ['action', 'fornecedor'=>$fornecedor,'contato_pricipal'=>$contato_pricipal, 'contato_adicional'=>$contato_adicional, 'endereco'=>$endereco]);
-        
-        
+       return view('formulario_update', ['action'=>$action, 'fornecedor'=>$fornecedor,'contatoPrincipal'=>$contatoPrincipal, 'contatosAdicional'=>$contatosAdicional, 'endereco'=>$endereco]);
+
     }
 
 
@@ -110,7 +110,15 @@ class FornecedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $fornecedor = Fornecedor::find($id);
+        DB::beginTransaction();
+        $fornecedor->update($request->all());
+        $fornecedor->endereco->update($request->all());
+        $fornecedor->contatoPrincipal->update($request->all());
+        $fornecedor->contatosAdicional->update($request->all());
+        DB::Commit();
+        return redirect()->route('fornecedor.index');
     }
 
     /**
@@ -120,10 +128,10 @@ class FornecedorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-            
+    {
+
         Fornecedor::destroy($id);
-        return redirect()->route('fornecedor.index');_  
+        return redirect()->route('fornecedor.index');
     }
 
     /**
